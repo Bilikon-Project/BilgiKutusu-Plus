@@ -1,146 +1,203 @@
 <div align="center">
 
 # 📚 BilgiKutusu Plus
-### İnternet olmasa da bilgi yanında.
-**Raspberry Pi 4 için taşınabilir, çevrimdışı bilgi deposu.**
+### Knowledge at your side, even without the internet.
+**A portable, zero-dependency, offline local network knowledge repository for Raspberry Pi 4.**
 
-![Sürüm](https://img.shields.io/badge/sürüm-1.0.0-2563eb?style=for-the-badge)
-![Hedef donanım](https://img.shields.io/badge/Raspberry_Pi_4-4_GB_RAM-C51A4A?style=for-the-badge&logo=raspberrypi&logoColor=white)
-![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Çevrimdışı](https://img.shields.io/badge/kullanım-çevrimdışı-15803d?style=for-the-badge)
+<p>
+  <img src="https://shields.io" alt="Version 1.0.0" />
+  <img src="https://shields.io" alt="Raspberry Pi 4" />
+  <img src="https://shields.io" alt="Python 3.9+" />
+  <img src="https://shields.io" alt="Offline Usage" />
+</p>
 
-**Türkçe** · [English](README.en.md)
+<p>
+  <a href="README.md">🇹🇷 Türkçe</a> · <b>🇺🇸 English</b>
+</p>
 
-[Geliştirici: alicanyilmz](https://github.com/alicanyilmz) · [Organizasyon: Bilikon-Project](https://github.com/Bilikon-Project)
+<p>
+  <a href="#-features">Features</a> •
+  <a href="#-whats-in-the-package">Package Contents</a> •
+  <a href="#-quick-start">Quick Start</a> •
+  <a href="#-installation-on-raspberry-pi">Installation</a> •
+  <a href="#-using-content-on-an-ssd">SSD Setup</a> •
+  <a href="#%EF%B8%8F-license">License</a>
+</p>
+
+<sub>Developer: <a href="https://github.com">@alicanyilmz</a> · Organization: <a href="https://github.com">Bilikon-Project</a></sub>
 
 </div>
 
 ---
 
-> **Geliştirme sürümü · 1.0.0**  
-> Bu depo uygulamayı, kurulum dosyalarını ve küçük örnek içerikleri içerir. **Kitap arşivi dahil değildir.** Harita ve video deneme amaçlı örneklerdir. Raspberry Pi üzerinde gerçek donanım ve yük testi henüz doğrulanmamıştır.
+> [!IMPORTANT]
+> **Development Release · 1.0.0**  
+> This repository contains the application code, installation scripts, and small sample files for testing purposes. **Book or large media archives are not included in this package.** The included map and video files are for demonstration only. Long-term real hardware and load testing on Raspberry Pi has not yet been verified.
 
-## 🌿 BilgiKutusu Plus nedir?
+## 🌿 What is BilgiKutusu Plus?
 
-Telefon, tablet ve bilgisayardan aynı yerel ağa bağlanarak dosyalara ulaşmanı sağlayan bir bilgi deposudur. İnternet bağlantısı olmadan klasörleri gezebilir, açık klasörde dosya adına göre arama yapabilir, uyumlu videoları tarayıcıda açabilir ve içerikleri indirebilirsin.
+**BilgiKutusu Plus** is a lightweight web portal that lets you access a centralized file archive from phones, tablets, and computers connected to the same local network (Wi-Fi / LAN). Without needing an internet connection, you can browse folders, perform instant file searches, stream browser-compatible videos smoothly, and download documents to your device.
 
-**Plus, BilgiKutusu ailesinin orta seviyesidir:** Go temelinin üzerine seçili özellikler ve örnek içerikler ekler; hedef donanımı **Raspberry Pi 4 Model B, 4 GB RAM**'dir. Yapay zekâ içermez. Python standart kütüphanesini kullanır; ek Python paketi veya bulut hesabı istemez.
+* **Zero External Dependencies:** Uses only the Python standard library; requires no extra packages, databases, or cloud accounts.
+* **No AI Involved:** Runs completely deterministically with minimal resource usage.
+* **Product Tier:** The mid-tier solution in the BilgiKutusu ecosystem.
 
-## ✨ Özellikler
-
-| Özellik | Bu sürümdeki davranış |
+| Edition | Target & Scope |
 | :--- | :--- |
-| 📂 Dosya gezgini | İçerik klasörlerini tarayıcıdan görüntüler. |
-| 🔎 Arama ve filtreleme | Açık klasörde dosya adına ve içerik türüne göre süzer. |
-| 🎬 Medya erişimi | Tarayıcının desteklediği ses/video dosyalarını açar; HTTP aralık isteklerini destekler. |
-| ⬇️ İndirme | Dosyaları telefona veya bilgisayara indirir. |
-| 💾 SSD desteği | İçerik klasörü SSD üzerindeki bir klasöre yönlendirilebilir. |
-| ⚙️ Otomatik başlatma | systemd kullanan Linux sistemlerde hizmet olarak çalışır. |
-| 🧭 Yerel kullanım | Portalın çalışması için internet veya harici web kaynağı gerekmez. |
+| **BilgiKutusu Go** | Basic level, lightest starter package |
+| **BilgiKutusu Plus** *(This Repo)* | **Mid-tier; enhanced media streaming, filtering, and sample templates** |
+| **BilgiKutusu Pro** | Comprehensive, full-featured library interface |
 
-## 📦 Pakette ne var?
+---
 
-| Bölüm | Dahil olan içerik | Açıklama |
+## ✨ Features
+
+| Feature | Description |
+| :--- | :--- |
+| 📂 **File Explorer** | Lists content directories through a clean, mobile-friendly web interface. |
+| 🔎 **Instant Search & Filter** | Quickly filters files inside the active folder by filename and media type. |
+| 🎬 **Smooth Media Streaming** | Plays browser-supported audio/video files with **HTTP Range** support for seeking. |
+| ⬇️ **One-Click Download** | Saves selected files directly to the client device (phone/computer). |
+| 💾 **External SSD Support** | The content directory can easily be pointed to an external drive via the configuration file. |
+| ⚙️ **Background Service** | Starts automatically at boot on Linux distributions using `systemd`. |
+| 🧭 **100% Local Operation** | Makes no external CDN, font, or API requests; works seamlessly in air-gapped networks. |
+
+---
+
+## 📦 What's in the Package?
+
+<details open>
+<summary><b>View Default Folders and Sample Content List</b></summary>
+<br>
+
+| Section | Included Content | Description |
 | :--- | :--- | :--- |
-| Haritalar | Türkiye şehir konumları görseli | Dokuz şehir merkezinin yaklaşık konumlarını gösteren **örnek koordinat haritası**; ayrıntılı Türkiye haritası değildir. |
-| Eğitim videoları | Haritada yönler | Yön, enlem ve boylam okumaya yönelik **24 saniyelik, yazılı anlatımlı örnek video**. |
-| Tarım | Ekim takibi CSV çizelgesi | İndirip kendi cihazında doldurabileceğin şablon. |
-| Balıkçılık | Gözlem defteri CSV çizelgesi | İndirip kendi cihazında doldurabileceğin şablon. |
-| Belgeler | Başlangıç metni | Kısa kullanım bilgisi. |
-| Kitaplar | Boş içerik alanı | **Kitap veya e-kitap arşivi bulunmaz.** |
-| Görseller | Boş içerik alanı | Kendi görsellerin için ayrılmış klasör. |
+| 🗺️ **Maps** (`Haritalar`) | Turkish city locations image | **Sample map** showing approximate coordinates of 9 city centers (not a detailed map). |
+| 🎥 **Educational Videos** (`EgitimVideolari`) | Directions on a map | **24-second text-annotated sample video** explaining compass directions, latitude, and longitude. |
+| 🌾 **Agriculture** (`Tarim`) | Planting tracker CSV sheet | Ready-to-use spreadsheet template you can download and edit on your device. |
+| 🎣 **Fishing** (`Balikcilik`) | Observation log CSV sheet | Ready-to-use logbook template you can download and edit on your device. |
+| 📄 **Documents** (`Belgeler`) | Getting started text | Short guide containing basic usage instructions. |
+| 📚 **Books** (`Kitaplar`) | *Empty content area* | Directory reserved for your own e-book/PDF archive. |
+| 🖼️ **Images** (`Gorseller`) | *Empty content area* | Directory reserved for your own photos and images. |
 
-Wikipedia/ZIM arşivleri, Kiwix, film/dizi arşivleri ve büyük eğitim kütüphaneleri bu pakete dahil değildir. Yeni içerik otomatik indirilmez. Yalnızca paylaşma hakkına sahip olduğun içerikleri kendin eklersin.
+</details>
 
-## 🧰 Gereksinimler
+> [!NOTE]
+> Wikipedia/ZIM archives, Kiwix, movie/TV series archives, and large educational libraries are **not included** in this package. The application does not automatically download content from the internet; you only add your own files that you have the right to share.
 
-| Bileşen | Gereksinim / hedef |
-| :--- | :--- |
-| Cihaz | Raspberry Pi 4 Model B; 4 GB RAM hedefi |
-| İşletim sistemi | Raspberry Pi OS veya Debian gibi Linux dağıtımları |
-| Python | 3.9 veya üzeri |
-| Otomatik başlatma | systemd |
-| Depolama | İçerik boyutuna uygun SD kart veya SSD; sabit 1 TB zorunluluğu yok |
-| Ağ | Pi ve istemci cihazların erişebildiği mevcut yerel ağ |
+---
 
-**Wi-Fi notu:** Kurulum erişim noktası oluşturmaz. Önceden yapılandırılmış BilgiKutusu Wi-Fi ağını veya mevcut yerel ağını kullanır. Mevcut nginx, Kiwix ve depolama ayarlarını değiştirmez.
+## 🧰 Requirements
 
-## 🚀 Hızlı başlangıç
+* **Hardware:** Raspberry Pi 4 Model B *(4 GB RAM recommended)*
+* **Operating System:** Raspberry Pi OS or Debian-based Linux distributions
+* **Software:** Python `3.9` or higher + `systemd`
+* **Storage:** SD card or external SSD sized for your archive *(no fixed 1 TB requirement)*
+* **Network:** Shared local network accessible by both the Raspberry Pi and client devices
 
-Depoyu ZIP olarak indirip çıkar. Proje klasöründe terminal aç:
+> [!TIP]
+> **Wi-Fi / Access Point Note:** The installation script does not turn your device into a Wi-Fi Hotspot. It uses your existing local network or pre-configured BilgiKutusu network without modifying your existing `nginx`, `Kiwix`, or disk mount settings.
+
+---
+
+## 🚀 Quick Start
+
+To test the application locally without installing it as a system service, download the repository and open a terminal in the project root directory:
 
 ```bash
+# Start the local test server
 bash baslat.sh
 ```
 
-Pi'nin kendi tarayıcısında **http://127.0.0.1:8091** adresini aç. Durdurmak için **Ctrl+C** kullan. Bu deneme varsayılan olarak yalnızca Pi'nin kendisinden erişilebilir.
+Open **`http://127.0.0.1:8091`** in your browser. Press `Ctrl + C` in the terminal to stop the server.  
+*(Note: For security reasons, quick-start mode is only accessible from the local machine itself by default.)*
 
-## 🔧 Raspberry Pi'de kurulum
+---
 
-Proje klasöründe:
+## 🔧 Installation on Raspberry Pi
+
+To permanently install the application as a system service, run the following command in the project root directory:
 
 ```bash
-sudo bash kurulum/kur.sh
+sudo bash kur.sh
 ```
 
-Uygulama `/opt/bilgikutusu-plus`, içerikler `/srv/bilgikutusu-plus/icerik`, ayarlar `/etc/bilgikutusu-plus/config.json` altına yerleştirilir; `bilgikutusu-plus` hizmeti başlatılır.
+**Directories created by the installer:**
+* **Application files:** `/opt/bilgikutusu-plus`
+* **Shared content:** `/srv/bilgikutusu-plus/icerik`
+* **Configuration file:** `/etc/bilgikutusu-plus/config.json`
 
-1. Telefonunu Pi ile aynı yerel ağa bağla.
-2. Pi'de `hostname -I` komutuyla bu ağa ait IP adresini öğren.
-3. Tarayıcıda `http://PI_ADRESI:8091` aç; `PI_ADRESI` yerine cihazının adresini yaz.
+### 📱 Connecting from the Local Network
+1. Connect your phone or computer to the **same Wi-Fi / local network** as the Raspberry Pi.
+2. Run `hostname -I` in the Raspberry Pi terminal to find its local IP address.
+3. Open **`http://PI_IP_ADDRESS:8091`** in your client device's browser.
 
-Kurulum mevcut Plus kurulumu veya kullanılan 8091 portu bulursa durur. Betik güncelleme aracı değildir; mevcut kurulum için önce içerik ve ayarlarını yedekle.
+> [!WARNING]
+> The installation script will safely abort if it detects an existing `BilgiKutusu Plus` installation or another service already using port `8091`. This script is not an upgrade tool; if you have an existing setup, back up your content and configuration first.
 
-## 💾 SSD üzerindeki içeriği kullanma
+---
 
-`/etc/bilgikutusu-plus/config.json` içindeki `content_dir` değerini paylaşılacak klasörün tam yoluyla değiştir. Örnek değer: `/mnt/BilgiKutusu`.
+## 💾 Using Content on an SSD
 
-Kısayollar `Haritalar`, `EgitimVideolari`, `Tarim` ve `Balikcilik` klasör adlarını kullanır. SSD'de örnekleri de görmek istersen ilgili örnek dosyaları bu klasörlere kendin kopyala. Hizmet kullanıcısına okuma ve klasörlere erişim izni ver. SSD bağlıyken:
+To serve your archive from an external SSD, update the `content_dir` value in `/etc/bilgikutusu-plus/config.json` with the mount path of your SSD folder:
+
+```json
+{
+  "content_dir": "/mnt/BilgiKutusu"
+}
+```
+
+* Interface shortcuts recognize the folder names `Haritalar`, `EgitimVideolari`, `Tarim`, and `Balikcilik`. If you also want the sample files visible on the SSD, copy them into these folders manually.
+* Ensure the service user has **read and execute** permissions on the SSD directories.
+* Restart the service to apply your changes:
 
 ```bash
 sudo systemctl restart bilgikutusu-plus
 ```
 
-**Paylaşım kapsamı:** Seçilen klasördeki erişilebilir dosyalar yerel ağdaki kullanıcılara sunulur. Kullanıcı girişi yoktur; güvenilen yerel ağ içindir. Kişisel dosyalarını paylaşım klasörüne koyma ve portu internete açma. Web arayüzü dosya yükleme, silme veya düzenleme yapmaz.
+> [!CAUTION]
+> **Security & Privacy:** All accessible files in the selected directory become visible to anyone on the local network. There is no user login or password protection; use only on **trusted local networks**. Do not place personal or sensitive data in the shared directory, and do not expose port `8091` to the internet. The web interface is read-only (it does not upload, delete, or modify files).
 
-## 🗂️ Proje yapısı
+---
 
-| Yol | İçerik |
-| :--- | :--- |
-| `uygulama/` | Python uygulaması ve yerel web arayüzü |
-| `kurulum/` | Kurulum, durum, kaldırma betikleri ve hizmet tanımı |
-| `ayarlar/` | Varsayılan yapılandırma |
-| `icerik/` | Örnek içerikler ve boş içerik klasörleri |
-| `belgeler/` | Kaynak lisans bildirimi ve test notları |
-| `testler/` | Otomatik uygulama testleri |
-| `baslat.sh` | Yerel deneme başlatıcısı |
+## ✅ Status Check & Tests
 
-## ✅ Durum ve testler
+To check the running status of the service and run the unit test suite:
 
 ```bash
-bash kurulum/durum.sh
-python3 -B -m unittest discover -s testler -v
+# View service status
+bash durum.sh
+
+# Run automated unit tests
+python3 -B -m unittest discover -v
 ```
 
-Testler dosya erişimi, indirme, medya aralıkları, Türkçe dosya adları, yapılandırma, gizli dosyalar ve klasör dışına erişim kontrollerini kapsar. Doğrulama kapsamı için [test notlarına](belgeler/Test-Notlari.md) bak.
+The test suite verifies file access, download streaming, HTTP media byte-ranges, Turkish character filenames, configuration validation, hidden file blocking, and directory traversal protection. See [Test Notes](Test-Notlari.md) for further details.
 
-## 🤝 Katkıda bulunma
+---
 
-Hata ve öneriler için bu deponun **Issues** bölümünü kullanabilirsin. Kod katkıları pull request ile gönderilebilir. İçerik katkılarında kaynağı ve paylaşım lisansını belirt; kişisel bilgi, parola veya API anahtarı ekleme.
+## 🤝 Contributing
 
-[Geliştirici](https://github.com/alicanyilmz) · [Bilikon-Project](https://github.com/Bilikon-Project)
+You can use the repository's **Issues** tab for bug reports and feature suggestions, or submit a **Pull Request** for code improvements.
 
-## ⚖️ Lisans
+* When contributing content, always specify the source and copyright/sharing license.
+* Never include personal data, passwords, or API keys in your submissions.
 
-Plus paketi **Ücretsiz ve Ticari Olmayan Kullanım Lisansı 1.0** ile sunulur. Kaynak kodu incelenebilir; kullanım ve yeniden dağıtım koşulları [LICENSE](LICENSE) dosyasındadır. Ticari kullanım yazılı izin gerektirir. Bu lisans OSI tanımına uygun bir açık kaynak lisansı değildir.
+Development Team: [Bilikon-Project](https://github.com)
 
-Temel alınan Go arşivinin özgün lisans bildirimi [belgeler/Go-Kaynak-Lisansi.txt](belgeler/Go-Kaynak-Lisansi.txt) dosyasında korunur. Üçüncü taraf içerikleri kendi lisanslarına tabidir.
+---
+
+## ⚖️ License
+
+This software is provided under the **Free and Non-Commercial Use License 1.0**. The source code may be inspected; terms of use and redistribution are detailed in the [LICENSE](LICENSE) file. Commercial use requires written permission *(this license is not an OSI-approved open-source license)*.
+
+The original license notice of the underlying **BilgiKutusu Go** archive is preserved in [Go-Kaynak-Lisansi.txt](Go-Kaynak-Lisansi.txt). Third-party media and template files are subject to their respective licenses.
 
 ---
 
 <div align="center">
 
-**BilgiKutusu Plus · Bilgiye çevrimdışı erişim**  
-[Türkçe](README.md) · [English](README.en.md) · [Bilikon-Project](https://github.com/Bilikon-Project)
+**BilgiKutusu Plus · Offline Access to Knowledge**  
+[🇹🇷 Türkçe](README-tr.md) · [🇺🇸 English](README.md) · [Bilikon-Project](https://github.com)
 
 </div>
