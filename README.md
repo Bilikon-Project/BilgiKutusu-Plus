@@ -24,7 +24,7 @@
   <a href="#%EF%B8%8F-license">License</a>
 </p>
 
-<sub>Developer: <a href="https://github.com">@alicanyilmz</a> · Organization: <a href="https://github.com">Bilikon-Project</a></sub>
+<sub>Developer: <a href="https://github.com/alicanyilmz">alicanyilmaz</a> and <a href="https://github.com/maxbytess">max</a> · Organization: <a href="https://github.com/Bilikon-Project">Bilikon-Project</a></sub>
 
 </div>
 
