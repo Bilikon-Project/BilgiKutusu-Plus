@@ -12,7 +12,7 @@
 </p>
 
 <p>
-  <a href="README.md">🇹🇷 Türkçe</a> · <b>🇺🇸 English</b>
+  <a href="README-tr.md">🇹🇷 Türkçe</a> · <b>🇺🇸 English</b>
 </p>
 
 <p>
